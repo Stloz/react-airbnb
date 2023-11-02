@@ -5,6 +5,13 @@ import Photo from "./component/photo";
 import Price from "./component/price";
 import RoomList from "./component/room-list";
 import Description from "./component/description";
+import Details from "./component/details";
+import Amenities from "./component/amenities";
+
+import Contacts from "./component/contacts";
+import Properties from "./component/properties";
+import Reviews from "./component/reviews";
+import Attractions from "./component/attractions";
 
 function App() {
   const data = {
@@ -178,8 +185,41 @@ function App() {
       />
 
       <RoomList list={data.roomTypes} />
+
       <Description title="Опис">{data.description}</Description>
+
+      <Details
+        guests={data.property_details.guests}
+        bedrooms={data.property_details.bedrooms}
+        beds={data.property_details.beds}
+        baths={data.property_details.baths}
+      />
+
       <Description title="Про сусідів" children={data.neighborhood_info} />
+
+      <Amenities title="Зручності:" amenities={data.amenities} />
+
+      <Contacts
+        name={data.contact_info.name}
+        title={`Господар - ${data.contact_info.name}`}
+        contactImage={data.contact_info.image}
+        response_rate={`${data.contact_info.response_rate}% відсотків`}
+        response_time={data.contact_info.response_time}
+        phone={data.contact_info.phone}
+        info={data.contact_info.info}
+      />
+
+      <Properties
+        title="Додаткові властивості"
+        properties={data.additional_properties}
+      />
+
+      <Reviews guestReviews={data.guestReviews} />
+
+      <Attractions
+        title="Пам'ятки поблизу"
+        attractions={data.nearbyAttractions}
+      />
     </Page>
   );
 }

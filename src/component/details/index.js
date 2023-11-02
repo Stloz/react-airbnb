@@ -2,57 +2,37 @@ import "./index.css";
 
 import Box from "../box";
 import ListItem from "../list-item";
+import Heading from "../heading";
+import guestsIcon from "./guests.svg";
+import bedroomsIcon from "./bedrooms.svg";
+import bedsIcon from "./beds.svg";
+import bathsIcon from "./baths.svg";
 
-export default function Price({ price, discount, currency, ...rest }) {
+export default function Details({ guests, bedrooms, beds, baths }) {
   return (
-    <Box className="price">
-      <div class="price__header">
-        <span
-          className={`price__value ${
-            discount ? "price__value--has--discount" : ""
-          }`}
-        >
-          {currency}
-          {price}
-        </span>
-        {discount && (
-          <span className={`price__value`}>
-            {currency}
-            {discount}
-          </span>
-        )}
-      </div>
+    <Box shadow className="details">
+      <Heading border class="details__header">
+        Деталі властивості:
+      </Heading>
 
-      <List {...rest} currency={currency} />
+      <ul className="details__list">
+        <ListItem imageSrc={guestsIcon}>
+          <span>{guests}</span>
+          <span>гості</span>
+        </ListItem>
+        <ListItem imageSrc={bedroomsIcon}>
+          <span>{bedrooms}</span>
+          <span>спальня</span>
+        </ListItem>
+        <ListItem imageSrc={bedsIcon}>
+          <span>{beds}</span>
+          <span>ліжко</span>
+        </ListItem>
+        <ListItem imageSrc={bathsIcon}>
+          <span>{baths}</span>
+          <span>ванна кімната</span>
+        </ListItem>
+      </ul>
     </Box>
-  );
-}
-
-function List({ currency, cleaning, service, checkin, checkout }) {
-  return (
-    <ul className="price__list">
-      <ListItem>
-        <span>Плата за прибирання:</span>
-        <span>
-          {currency}
-          {cleaning}
-        </span>
-      </ListItem>
-      <ListItem>
-        <span>Сервісний збір:</span>
-        <span>
-          {currency}
-          {service}
-        </span>
-      </ListItem>
-      <ListItem>
-        <span>Дата прибуття:</span>
-        <span>{checkin}</span>
-      </ListItem>
-      <ListItem>
-        <span>Дата відʼїзду:</span>
-        <span>{checkout}</span>
-      </ListItem>
-    </ul>
   );
 }
